@@ -1,85 +1,95 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto de Billetera Virtual</title>
+</head>
+<body>
+  <h1>📲 Proyecto de Billetera Virtual</h1>
+  <p>Este proyecto implementa una billetera virtual utilizando <strong>NestJS</strong>. Está organizado en dos módulos principales: un módulo <strong>REST</strong> que actúa como puente entre el cliente y el servicio SOAP, y un módulo <strong>SOAP</strong> que maneja el acceso directo a la base de datos y la lógica de negocio principal. La base de datos empleada es <strong>MongoDB</strong> y se utiliza <strong>Nodemailer</strong> para el envío de notificaciones por correo electrónico.</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+  <h2>🚀 Tecnologías Utilizadas</h2>
+  <ul>
+    <li><strong>NestJS</strong>: Framework principal para construir una API modular y escalable.</li>
+    <li><strong>MongoDB</strong>: Base de datos NoSQL, manejada desde el módulo SOAP.</li>
+    <li><strong>NestJS SOAP</strong>: Librería de NestJS para implementar servicios SOAP.</li>
+    <li><strong>Nodemailer</strong>: Herramienta para el envío de notificaciones por correo electrónico.</li>
+    <li><strong>Swagger</strong>: Documentación interactiva de la API para facilitar el consumo de los servicios.</li>
+  </ul>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <h2>📂 Estructura del Proyecto</h2>
+  <pre>
+src
+├── billetera
+│   ├── rest
+│   │   ├── billetera.controller.ts      # Controlador REST para manejar solicitudes de clientes
+│   │   ├── billetera.dto.ts             # DTOs para validar datos de entrada en REST
+│   │   ├── billetera.module.ts          # Módulo REST
+│   │   └── billetera.service.ts         # Servicio REST para lógica intermedia
+│   ├── soap
+│   │   ├── entities
+│   │   │   └── mongo                    # Carpeta para las entidades de MongoDB
+│   │   │       └── mongo.service.ts     # Servicio que maneja la conexión con MongoDB
+│   │   ├── wsdl
+│   │   │   └── billetera.wsdl           # Archivo WSDL para el servicio SOAP
+│   │   ├── billetera.soap.controller.ts # Controlador SOAP
+│   │   ├── billetera.soap.module.ts     # Módulo SOAP
+│   │   └── billetera.soap.service.ts    # Servicio SOAP con lógica de negocio principal
+├── app.module.ts                        # Módulo raíz
+└── main.ts                              # Archivo de entrada principal
+  </pre>
 
-## Description
+  <h2>🧩 Funcionalidades Principales</h2>
+  <ul>
+    <li><strong>Registrar Cliente</strong>: Permite registrar nuevos clientes en el sistema.</li>
+    <li><strong>Recargar Billetera</strong>: Realiza recargas a la billetera de los clientes.</li>
+    <li><strong>Pagar Compra</strong>: Permite realizar pagos utilizando el saldo de la billetera.</li>
+    <li><strong>Confirmar Pago</strong>: Confirma una transacción en curso.</li>
+    <li><strong>Consultar Saldo</strong>: Permite consultar el saldo actual de la billetera del cliente.</li>
+  </ul>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  <h2>📑 Documentación Swagger</h2>
+  <p>La documentación Swagger está disponible en:</p>
+  <p><a href="http://localhost:3000/api/docs#/">Swagger Documentation</a></p>
+  <p>Esta documentación describe cada endpoint del módulo REST, los parámetros necesarios y las respuestas esperadas.</p>
 
-## Project setup
+  <h2>📬 Notificaciones por Correo</h2>
+  <p>Se utiliza <strong>Nodemailer</strong> para enviar notificaciones de eventos importantes, como confirmaciones de pagos y recargas.</p>
 
-```bash
-$ npm install
-```
+  <h2>🛠️ Instalación y Configuración</h2>
 
-## Compile and run the project
+  <h3>Paso 1: Clonar el repositorio</h3>
+  <pre><code>git clone https://github.com/CamilolIn/Billetera-virtual-back.git
+cd Billetera-virtual-back</code></pre>
 
-```bash
-# development
-$ npm run start
+  <h3>Paso 2: Instalar dependencias</h3>
+  <pre><code>npm install</code></pre>
 
-# watch mode
-$ npm run start:dev
+  <h3>Paso 3: Iniciar el servidor</h3>
+  <p>Ejecuta el siguiente comando para iniciar el servidor en modo desarrollo:</p>
+  <pre><code>npm run start:dev</code></pre>
+  <p>El servidor estará disponible en <code>http://localhost:3000</code>.</p>
 
-# production mode
-$ npm run start:prod
-```
+  <h2>🛠️ Desarrollo</h2>
 
-## Run tests
+  <h3>Comandos Útiles</h3>
+  <ul>
+    <li><strong>Iniciar el servidor en modo desarrollo</strong>:
+      <pre><code>npm run start:dev</code></pre>
+    </li>
+    <li><strong>Compilar el proyecto</strong>:
+      <pre><code>npm run build</code></pre>
+    </li>
+    <li><strong>Ejecutar el proyecto</strong>:
+      <pre><code>npm run start</code></pre>
+    </li>
+  </ul>
 
-```bash
-# unit tests
-$ npm run test
+  <h3>Estructura de Carpetas</h3>
+  <p>Este proyecto utiliza la estructura recomendada por NestJS para mantener una separación clara entre los módulos <strong>REST</strong> y <strong>SOAP</strong>.</p>
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+  <h2>📜 Licencia</h2>
+  <p>Este proyecto está bajo la Licencia MIT. Consulta el archivo <code>LICENSE</code> para más detalles.</p>
+</body>
+</html>
