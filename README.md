@@ -30,11 +30,11 @@ src
 │   │   ├── entities
 │   │   │   └── mongo                    # Carpeta para las entidades de MongoDB
 │   │   │       └── mongo.service.ts     # Servicio que maneja la conexión con MongoDB
-│   │   ├── wsdl
-│   │   │   └── billetera.wsdl           # Archivo WSDL para el servicio SOAP
 │   │   ├── billetera.soap.controller.ts # Controlador SOAP
 │   │   ├── billetera.soap.module.ts     # Módulo SOAP
 │   │   └── billetera.soap.service.ts    # Servicio SOAP con lógica de negocio principal
+│   │── wsdl
+│       └── billetera.wsdl               # Archivo WSDL para el servicio SOAP
 ├── app.module.ts                        # Módulo raíz
 └── main.ts                              # Archivo de entrada principal
   </pre>
