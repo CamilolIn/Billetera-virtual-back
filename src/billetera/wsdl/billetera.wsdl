@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://localhost/soap/billetera"
+             xmlns="http://localhost/soap/billetera">
+
+  <message name="registroClienteRequest">
+    <part name="documento" type="xsd:string"/>
+    <part name="nombres" type="xsd:string"/>
+    <part name="email" type="xsd:string"/>
+    <part name="celular" type="xsd:string"/>
+  </message>
+
+  <message name="registroClienteResponse">
+    <part name="success" type="xsd:boolean"/>
+    <part name="cod_error" type="xsd:string"/>
+    <part name="message_error" type="xsd:string"/>
+  </message>
+
+  <message name="pagarCompraRequest">
+    <part name="documento" type="xsd:string"/>
+    <part name="monto" type="xsd:decimal"/>
+  </message>
+
+  <message name="pagarCompraResponse">
+    <part name="success" type="xsd:boolean"/>
+    <part name="cod_error" type="xsd:string"/>
+    <part name="message_error" type="xsd:string"/>
+    <part name="mensaje" type="xsd:string"/>
+    <part name="id_sesion" type="xsd:string"/>
+  </message>
+
+  <message name="confirmarPagoRequest">
+    <part name="id_sesion" type="xsd:string"/>
+    <part name="token" type="xsd:string"/>
+  </message>
+
+  <message name="confirmarPagoResponse">
+    <part name="success" type="xsd:boolean"/>
+    <part name="cod_error" type="xsd:string"/>
+    <part name="message_error" type="xsd:string"/>
+    <part name="mensaje" type="xsd:string"/>
+  </message>
+
+  <message name="consultarSaldoRequest">
+    <part name="documento" type="xsd:string"/>
+    <part name="celular" type="xsd:string"/>
+  </message>
+
+  <message name="consultarSaldoResponse">
+    <part name="saldo" type="xsd:decimal"/>
+    <part name="cod_error" type="xsd:string"/>
+    <part name="message_error" type="xsd:string"/>
+  </message>
+
+  <portType name="BilleteraPortType">
+    <operation name="registroCliente">
+      <input message="tns:registroClienteRequest"/>
+      <output message="tns:registroClienteResponse"/>
+    </operation>
+
+    <operation name="pagarCompra">
+      <input message="tns:pagarCompraRequest"/>
+      <output message="tns:pagarCompraResponse"/>
+    </operation>
+
+    <operation name="confirmarPago">
+      <input message="tns:confirmarPagoRequest"/>
+      <output message="tns:confirmarPagoResponse"/>
+    </operation>
+
+    <operation name="consultarSaldo">
+      <input message="tns:consultarSaldoRequest"/>
+      <output message="tns:consultarSaldoResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="BilleteraBinding" type="tns:BilleteraPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="registroCliente">
+      <soap:operation soapAction="http://localhost/soap/billetera/registroCliente"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="pagarCompra">
+      <soap:operation soapAction="http://localhost/soap/billetera/pagarCompra"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="confirmarPago">
+      <soap:operation soapAction="http://localhost/soap/billetera/confirmarPago"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="consultarSaldo">
+      <soap:operation soapAction="http://localhost/soap/billetera/consultarSaldo"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="BilleteraService">
+    <port name="BilleteraPort" binding="tns:BilleteraBinding">
+      <soap:address location="http://localhost:3000/soap/service"/>
+    </port>
+  </service>
+</definitions>
